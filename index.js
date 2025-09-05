@@ -12,7 +12,7 @@ app.use("/app1", express.static(path.join(__dirname, "app1")))
 app.use("/app2", express.static(path.join(__dirname, "app2")))
 app.use("/app3", express.static(path.join(__dirname, "app3")))
 
-// JSON file database helpers
+//! JSON file database helpers
 function loadDB() {
   if (!fs.existsSync(DB_FILE)) {
     const seed = {
@@ -38,7 +38,7 @@ let { users, stores, products, orders, sequences } = loadDB()
 let orderSeq = sequences.order
 let productSeq = sequences.product
 
-// Utils
+//* Utils
 function generateToken(user) {
   return Buffer.from(`${user.id}:${user.role}`).toString("base64")
 }
@@ -54,7 +54,7 @@ function parseToken(token) {
   }
 }
 
-// Auth
+//* Auth
 app.post("/api/login", (req, res) => {
   const { email, password, role } = req.body || {}
   const db = loadDB()
@@ -63,21 +63,21 @@ app.post("/api/login", (req, res) => {
   res.send({ token: generateToken(user), user })
 })
 
-// Register new user
+//? Register new user
 app.post("/api/register", (req, res) => {
   const { email, password, name, role } = req.body || {}
   const db = loadDB()
   
-  // Check if user already exists
+  //* Check if user already exists
   if (db.users.find(u => u.email === email)) {
     return res.status(400).send({ message: "Usuario ya existe" })
   }
   
-  // Generate new user ID
+  //? Generate new user ID
   const newUserId = Math.max(...db.users.map(u => u.id), 0) + 1
   const newUser = { id: newUserId, email, password, name, role }
   
-  // If it's a store admin, create store too
+  //* If it's a store admin, create store too
   if (role === "store") {
     const newStoreId = Math.max(...db.stores.map(s => s.id), 0) + 1
     const newStore = { id: newStoreId, name: `${name}'s Store`, address: "Dirección por definir", isOpen: false }
@@ -90,7 +90,7 @@ app.post("/api/register", (req, res) => {
   res.status(201).send({ message: "Usuario creado exitosamente", user: newUser })
 })
 
-// Stores
+//? Stores
 app.get("/api/stores", (req, res) => {
   const { stores } = loadDB()
   res.send(stores)
@@ -105,7 +105,7 @@ app.get("/api/stores/:id", (req, res) => {
   res.send({ store, products: storeProducts })
 })
 
-// Store admin: toggle open/close and create product
+//* Store admin: toggle open/close and create product
 app.put("/api/store/toggle", (req, res) => {
   const { token, isOpen } = req.body
   const user = parseToken(token)
@@ -118,7 +118,7 @@ app.put("/api/store/toggle", (req, res) => {
   res.send(store)
 })
 
-// Update store information
+//? Update store information
 app.put("/api/store/update", (req, res) => {
   const { token, name, address } = req.body
   const user = parseToken(token)
@@ -144,7 +144,7 @@ app.post("/api/store/products", (req, res) => {
   res.status(201).send(product)
 })
 
-// Products by store
+//* Products by store
 app.get("/api/stores/:id/products", (req, res) => {
   const storeId = Number(req.params.id)
   const { products } = loadDB()
@@ -152,8 +152,8 @@ app.get("/api/stores/:id/products", (req, res) => {
   res.send(list)
 })
 
-// Orders
-// Create order by consumer
+//! Orders
+//* Create order by consumer
 app.post("/api/orders", (req, res) => {
   const { token, storeId, items, paymentMethod, address } = req.body
   const user = parseToken(token)
@@ -171,7 +171,7 @@ app.post("/api/orders", (req, res) => {
     storeId: Number(storeId),
     consumerId: user.id,
     courierId: null,
-    status: "created", // created -> accepted -> delivering -> delivered
+    status: "created", //* created -> accepted -> delivering -> delivered
     items: normalizedItems,
     paymentMethod,
     address,
@@ -183,7 +183,7 @@ app.post("/api/orders", (req, res) => {
   res.status(201).send(order)
 })
 
-// List consumer orders
+//? List consumer orders
 app.get("/api/my/orders", (req, res) => {
   const token = req.headers.authorization?.replace("Bearer ", "") || req.query.token
   const user = parseToken(token)
@@ -192,7 +192,7 @@ app.get("/api/my/orders", (req, res) => {
   res.send(orders.filter(o => o.consumerId === user.id))
 })
 
-// List available orders for couriers
+//* List available orders for couriers
 app.get("/api/courier/orders/available", (req, res) => {
   const token = req.headers.authorization?.replace("Bearer ", "") || req.query.token
   const user = parseToken(token)
@@ -201,7 +201,7 @@ app.get("/api/courier/orders/available", (req, res) => {
   res.send(orders.filter(o => o.status === "created"))
 })
 
-// Accept an order
+//* Accept an order
 app.post("/api/courier/orders/:id/accept", (req, res) => {
   const token = req.headers.authorization?.replace("Bearer ", "") || req.body.token
   const user = parseToken(token)
@@ -217,7 +217,7 @@ app.post("/api/courier/orders/:id/accept", (req, res) => {
   res.send(order)
 })
 
-// List courier accepted orders
+//? List courier accepted orders
 app.get("/api/courier/orders/accepted", (req, res) => {
   const token = req.headers.authorization?.replace("Bearer ", "") || req.query.token
   const user = parseToken(token)
@@ -226,7 +226,7 @@ app.get("/api/courier/orders/accepted", (req, res) => {
   res.send(orders.filter(o => o.courierId === user.id))
 })
 
-// Basic root message
+//* Basic root message
 app.get("/", (req, res) => {
   res.setHeader("Content-Type", "text/html; charset=utf-8")
   res.end(`<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>MiTiendita</title><style>

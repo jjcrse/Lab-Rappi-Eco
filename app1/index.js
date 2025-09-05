@@ -180,7 +180,7 @@ async function renderStores() {
 async function renderStoreDetail(storeId) {
   view.innerHTML = "";
 
-  // Obtener datos de la tienda
+  //* Obtener datos de la tienda
   const data = await api(`/stores/${storeId}`);
 
   //* Encabezado de la tienda
