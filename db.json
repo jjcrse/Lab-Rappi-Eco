@@ -1,0 +1,320 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "alice@demo.com",
+      "password": "1234",
+      "role": "consumer",
+      "name": "Alice"
+    },
+    {
+      "id": 2,
+      "email": "store@demo.com",
+      "password": "1234",
+      "role": "store",
+      "name": "Demo Store Admin",
+      "storeId": 1
+    },
+    {
+      "id": 3,
+      "email": "rider@demo.com",
+      "password": "1234",
+      "role": "courier",
+      "name": "Rider Rick"
+    },
+    {
+      "id": 4,
+      "email": "martin@gmail.com",
+      "password": "1234",
+      "name": "Tiendita de Edwin",
+      "role": "store",
+      "storeId": 2
+    },
+    {
+      "id": 5,
+      "email": "Hola@gmail.com",
+      "password": "1234",
+      "name": "Tienda de hoy",
+      "role": "store",
+      "storeId": 3
+    },
+    {
+      "id": 6,
+      "email": "jjcrse@mail.com",
+      "password": "1234",
+      "name": "Juan José",
+      "role": "consumer"
+    },
+    {
+      "id": 7,
+      "email": "jjcrse@gmail.com",
+      "password": "1234",
+      "name": "Juano José",
+      "role": "consumer"
+    },
+    {
+      "id": 8,
+      "email": "jjcrse452@gmail.com",
+      "password": "1234",
+      "name": "Juan Jose",
+      "role": "consumer"
+    },
+    {
+      "id": 9,
+      "email": "repartidor@gmail.com",
+      "password": "1234",
+      "name": "Repartidor1",
+      "role": "courier"
+    },
+    {
+      "id": 10,
+      "email": "alex@gmail.com",
+      "password": "1234",
+      "name": "Salchipapa de alex",
+      "role": "store",
+      "storeId": 4
+    }
+  ],
+  "stores": [
+    {
+      "id": 1,
+      "name": "Martin Elias",
+      "address": "Calle 8A #38-69",
+      "isOpen": true
+    },
+    {
+      "id": 2,
+      "name": "Tiendita de Edwin's Store",
+      "address": "Dirección por definir",
+      "isOpen": false
+    },
+    {
+      "id": 3,
+      "name": "Tienda de hoy's Store",
+      "address": "Dirección por definir",
+      "isOpen": true
+    },
+    {
+      "id": 4,
+      "name": "Salchipapa de alex's Store",
+      "address": "Dirección por definir",
+      "isOpen": true
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "storeId": 1,
+      "name": "Apple",
+      "price": 1.25
+    },
+    {
+      "id": 2,
+      "storeId": 1,
+      "name": "Banana",
+      "price": 0.9
+    },
+    {
+      "id": 3,
+      "storeId": 1,
+      "name": "HolguinNalgon",
+      "price": 300
+    },
+    {
+      "id": 4,
+      "storeId": 1,
+      "name": "Felipe",
+      "price": 100
+    },
+    {
+      "id": 5,
+      "storeId": 3,
+      "name": "Salchipapa de alex",
+      "price": 70
+    },
+    {
+      "id": 6,
+      "storeId": 4,
+      "name": "Salchipapa todoterreno",
+      "price": 200
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "storeId": 1,
+      "consumerId": 1,
+      "courierId": 3,
+      "status": "accepted",
+      "items": [
+        {
+          "productId": 3,
+          "quantity": 2
+        }
+      ],
+      "paymentMethod": "cash",
+      "address": "Av. Siempre Viva 742",
+      "total": 600,
+      "createdAt": 1757001838807
+    },
+    {
+      "id": 2,
+      "storeId": 1,
+      "consumerId": 1,
+      "courierId": 9,
+      "status": "accepted",
+      "items": [
+        {
+          "productId": 3,
+          "quantity": 2
+        },
+        {
+          "productId": 2,
+          "quantity": 1
+        }
+      ],
+      "paymentMethod": "cash",
+      "address": "Av. Siempre Viva 742",
+      "total": 600.9,
+      "createdAt": 1757003133079
+    },
+    {
+      "id": 3,
+      "storeId": 1,
+      "consumerId": 1,
+      "courierId": null,
+      "status": "created",
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1
+        },
+        {
+          "productId": 2,
+          "quantity": 1
+        },
+        {
+          "productId": 3,
+          "quantity": 1
+        },
+        {
+          "productId": 4,
+          "quantity": 1
+        }
+      ],
+      "paymentMethod": "cash",
+      "address": "Av. Siempre Viva 742",
+      "total": 402.15,
+      "createdAt": 1757003406763
+    },
+    {
+      "id": 4,
+      "storeId": 1,
+      "consumerId": 1,
+      "courierId": 3,
+      "status": "accepted",
+      "items": [
+        {
+          "productId": 4,
+          "quantity": 5
+        },
+        {
+          "productId": 3,
+          "quantity": 3
+        }
+      ],
+      "paymentMethod": "cash",
+      "address": "Av. Siempre Viva 742",
+      "total": 1400,
+      "createdAt": 1757004091409
+    },
+    {
+      "id": 5,
+      "storeId": 1,
+      "consumerId": 1,
+      "courierId": null,
+      "status": "created",
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 2
+        },
+        {
+          "productId": 3,
+          "quantity": 1
+        }
+      ],
+      "paymentMethod": "cash",
+      "address": "Av. Siempre Viva 742",
+      "total": 301.8,
+      "createdAt": 1757005867544
+    },
+    {
+      "id": 6,
+      "storeId": 1,
+      "consumerId": 1,
+      "courierId": null,
+      "status": "created",
+      "items": [
+        {
+          "productId": 2,
+          "quantity": 1
+        },
+        {
+          "productId": 1,
+          "quantity": 1
+        },
+        {
+          "productId": 3,
+          "quantity": 1
+        },
+        {
+          "productId": 4,
+          "quantity": 1
+        }
+      ],
+      "paymentMethod": "cash",
+      "address": "Av. Siempre Viva 742",
+      "total": 402.15,
+      "createdAt": 1757038760100
+    },
+    {
+      "id": 7,
+      "storeId": 3,
+      "consumerId": 8,
+      "courierId": null,
+      "status": "created",
+      "items": [
+        {
+          "productId": 5,
+          "quantity": 5
+        }
+      ],
+      "paymentMethod": "cash",
+      "address": "Calle 8A #38-69",
+      "total": 350,
+      "createdAt": 1757060987415
+    },
+    {
+      "id": 8,
+      "storeId": 4,
+      "consumerId": 8,
+      "courierId": null,
+      "status": "created",
+      "items": [
+        {
+          "productId": 6,
+          "quantity": 4
+        }
+      ],
+      "paymentMethod": "cash",
+      "address": "Calle 2",
+      "total": 800,
+      "createdAt": 1757061224264
+    }
+  ],
+  "sequences": {
+    "order": 9,
+    "product": 7
+  }
+}
