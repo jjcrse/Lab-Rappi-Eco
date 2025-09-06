@@ -73,6 +73,35 @@
       "name": "Salchipapa de alex",
       "role": "store",
       "storeId": 4
+    },
+    {
+      "id": 11,
+      "email": "dayro@gmail.com",
+      "password": "1234",
+      "name": "Dayro Moreno",
+      "role": "consumer"
+    },
+    {
+      "id": 12,
+      "email": "icesi@gmail.com",
+      "password": "1234",
+      "name": "Icesi comida",
+      "role": "store",
+      "storeId": 5
+    },
+    {
+      "id": 13,
+      "email": "jose@gmail.com",
+      "password": "1234",
+      "name": "Jose",
+      "role": "courier"
+    },
+    {
+      "id": 14,
+      "email": "felipe@gmail.com",
+      "password": "1234",
+      "name": "Felipe",
+      "role": "courier"
     }
   ],
   "stores": [
@@ -97,6 +126,12 @@
     {
       "id": 4,
       "name": "Salchipapa de alex's Store",
+      "address": "Dirección por definir",
+      "isOpen": true
+    },
+    {
+      "id": 5,
+      "name": "Icesi comida's Store",
       "address": "Dirección por definir",
       "isOpen": true
     }
@@ -137,6 +172,12 @@
       "storeId": 4,
       "name": "Salchipapa todoterreno",
       "price": 200
+    },
+    {
+      "id": 7,
+      "storeId": 5,
+      "name": "Cabeza de rana",
+      "price": 12
     }
   ],
   "orders": [
@@ -182,8 +223,8 @@
       "id": 3,
       "storeId": 1,
       "consumerId": 1,
-      "courierId": null,
-      "status": "created",
+      "courierId": 14,
+      "status": "accepted",
       "items": [
         {
           "productId": 1,
@@ -253,8 +294,8 @@
       "id": 6,
       "storeId": 1,
       "consumerId": 1,
-      "courierId": null,
-      "status": "created",
+      "courierId": 14,
+      "status": "accepted",
       "items": [
         {
           "productId": 2,
@@ -282,8 +323,8 @@
       "id": 7,
       "storeId": 3,
       "consumerId": 8,
-      "courierId": null,
-      "status": "created",
+      "courierId": 14,
+      "status": "accepted",
       "items": [
         {
           "productId": 5,
@@ -311,10 +352,27 @@
       "address": "Calle 2",
       "total": 800,
       "createdAt": 1757061224264
+    },
+    {
+      "id": 9,
+      "storeId": 3,
+      "consumerId": 11,
+      "courierId": null,
+      "status": "created",
+      "items": [
+        {
+          "productId": 5,
+          "quantity": 3
+        }
+      ],
+      "paymentMethod": "cash",
+      "address": "Icesi",
+      "total": 210,
+      "createdAt": 1757127436317
     }
   ],
   "sequences": {
-    "order": 9,
-    "product": 7
+    "order": 10,
+    "product": 8
   }
 }
