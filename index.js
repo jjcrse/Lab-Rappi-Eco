@@ -256,9 +256,7 @@ app.get("/", (req, res) => {
     </div>
     
     <div class="features">
-      <span class="feature">Rápido</span>
-      <span class="feature">Eco</span>
-      <span class="feature">Seguro</span>
+
     </div>
   </div>
   </body></html>`)
